@@ -214,5 +214,82 @@ namespace WebDemo.Controllers
         }
 
         #endregion 发送消息
+
+        #region 群模块
+
+        /// <summary>
+        /// 创建群，好友微信id ["wxid_aaa","wxid_bbb"] 必须大于3人且包含自己
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/creat")]
+        public IHttpActionResult GroupCreat(GroupCreatModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_CreateChatRoom(model.users);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 退出群
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/quick")]
+        public IHttpActionResult GroupQuick(GroupQuickModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_QuitChatRoom(model.chatroomid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+
+        #endregion
     }
 }

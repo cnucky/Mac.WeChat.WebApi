@@ -75,4 +75,20 @@ namespace WebDemo.Model
 
         public string thumburl { get; set; }
     }
+
+    public class GroupCreatModel : BaseModel
+    {
+        /// <summary>
+        /// 好友wxid ["wxid_aaa","wxid_bbb"]
+        /// </summary>
+        public string users { get; set; }
+    }
+
+    public class GroupQuickModel : BaseModel
+    {
+        /// <summary>
+        /// 群id
+        /// </summary>
+        public string chatroomid { get; set; }
+    }
 }
