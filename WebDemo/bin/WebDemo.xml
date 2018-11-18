@@ -19,7 +19,7 @@
         </member>
         <member name="T:WebDemo.Controllers.WeChatController">
             <summary>
-            微信扫码模块
+            微信模块
             </summary>
         </member>
         <member name="M:WebDemo.Controllers.WeChatController.Connect">
@@ -37,10 +37,69 @@
         </member>
         <member name="M:WebDemo.Controllers.WeChatController.SendText(WebDemo.Model.SendTextModel)">
             <summary>
-            发送消息
+            发送文字消息
             </summary>
             <param name="model"></param>
             <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SendImg(WebDemo.Model.SendImgModel)">
+            <summary>
+            发送图片消息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SendApp(WebDemo.Model.SendAppModel)">
+            <summary>
+            发送链接消息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WebDemo.Model.BaseModel.uuid">
+            <summary>
+            创建websocket的uuid唯一标识
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.SendTextModel">
+            <summary>
+            发送文字消息实体类
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendTextModel.wxid">
+            <summary>
+            微信ID
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendTextModel.text">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.SendImgModel">
+            <summary>
+            发送图片消息实体类
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendImgModel.wxid">
+            <summary>
+            微信ID
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendImgModel.base64">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.SendAppModel">
+            <summary>
+            发送图片消息实体类
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendAppModel.wxid">
+            <summary>
+            微信ID
+            </summary>
         </member>
         <member name="T:WebDemo.Model.BackWxMsg">
             <summary>
@@ -379,6 +438,13 @@
             <param name="content"></param>
         </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendImg(System.String,System.String)">
+            <summary>
+            发消息 - 图片
+            </summary>
+            <param name="wxid"></param>
+            <param name="imgpath"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendImg(System.String,System.Drawing.Image)">
             <summary>
             发消息 - 图片
             </summary>

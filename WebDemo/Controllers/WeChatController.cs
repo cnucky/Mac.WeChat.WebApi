@@ -13,6 +13,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.WebSockets;
 using Newtonsoft.Json;
+using System.Drawing;
+using WebDemo.Util;
 
 namespace WebDemo.Controllers
 {
@@ -98,8 +100,10 @@ namespace WebDemo.Controllers
         }
 
 
+        #region 发送消息
+
         /// <summary>
-        /// 发送消息
+        /// 发送文字消息
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -117,7 +121,7 @@ namespace WebDemo.Controllers
                 }
                 else{
                     result.Success = false;
-                    result.Context = "不存在该连接";
+                    result.Context = "不存在该websocket连接";
                     return Ok(result);
                 }
               
@@ -125,8 +129,90 @@ namespace WebDemo.Controllers
                 result.Success = false;
                 result.ErrContext = e.Message;
                 return Ok(result);
-            }
-          
+            }    
         }
+
+        /// <summary>
+        /// 发送图片消息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("msg/sendimg")]
+        public IHttpActionResult SendImg(SendImgModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    Image img = ConvertUtils.GetImageFromBase64(model.base64);
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SendImg(model.wxid, img);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 发送链接消息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("msg/sendapp")]
+        public IHttpActionResult SendApp(SendAppModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+
+                    string xml = App.AppMsgXml.
+               Replace("$appid$", model.appid).
+                Replace("$sdkver$", model.sdkver).
+                 Replace("$title$", model.title).
+                  Replace("$des$", model.des).
+                   Replace("$url$", model.url).
+                    Replace("$thumburl$", model.thumburl);
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SendAppMsg(model.wxid, xml);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        #endregion 发送消息
     }
 }

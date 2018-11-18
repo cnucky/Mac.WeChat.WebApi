@@ -18,7 +18,7 @@ using WebDemo.Util;
 using System.Net.WebSockets;
 using System.Linq;
 using System.Text.RegularExpressions;
-using IPADDemo;
+using Xzy.IPAD.Core;
 
 namespace WebDemo.WeChat
 {
@@ -636,6 +636,25 @@ namespace WebDemo.WeChat
                     _image = null;
                 }
                 catch { }
+            }
+        }
+
+        /// <summary>
+        /// 发消息 - 图片
+        /// </summary>
+        /// <param name="wxid"></param>
+        /// <param name="imgpath"></param>
+        public unsafe string Wx_SendImg(string wxid, Image _image)
+        {
+            fixed (int* WxUser1 = &pointerWxUser, imptr1 = &wx_imptr)
+            {
+                //把文件读取到字节数组
+                byte[] data = this.ImageToBytes(_image);
+                XzyWxApis.WXSendImage(pointerWxUser, wxid, data, data.Length, (int)imptr1);
+                var datas = MarshalNativeToManaged((IntPtr)wx_imptr);
+                var str = datas.ToString();
+                Wx_ReleaseEX(ref wx_imptr);
+                return str;
             }
         }
 
