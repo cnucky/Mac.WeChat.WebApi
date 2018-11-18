@@ -56,6 +56,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SendMass(WebDemo.Model.SendMassModel)">
+            <summary>
+            群发消息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebDemo.Controllers.WeChatController.GroupCreat(WebDemo.Model.GroupCreatModel)">
             <summary>
             创建群，好友微信id ["wxid_aaa","wxid_bbb"] 必须大于3人且包含自己
@@ -318,6 +325,21 @@
             </summary>
         </member>
         <member name="P:WebDemo.Model.SendTextModel.text">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.SendMassModel">
+            <summary>
+            发送文字消息实体类
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendMassModel.wxids">
+            <summary>
+            用户名json数组 ["AB1","AC2","AD3"]
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendMassModel.text">
             <summary>
             消息内容
             </summary>
@@ -901,6 +923,14 @@
             </summary>
             <param name="wxid"></param>
             <param name="content"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_MassMessage(System.String,System.String)">
+            <summary>
+            群发消息
+            </summary>
+            <param name="wxid"></param>
+            <param name="content"></param>
+            <returns></returns>
         </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendImg(System.String,System.String)">
             <summary>
