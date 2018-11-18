@@ -1712,6 +1712,24 @@ namespace WebDemo.WeChat
             return result;
         }
 
+        /// <summary>
+        /// 搜索用户信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public unsafe string Wx_SearchContact(string user)
+        {
+            var result = "";
+            fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
+            {
+                XzyWxApis.WXSearchContact(pointerWxUser, user, (int)msgptr1);
+                var datas = MarshalNativeToManaged((IntPtr)msgPtr);
+                result = datas.ToString();
+                Wx_ReleaseEX(ref msgPtr);
+            }
+            return result;
+        }
+
         public unsafe string Wx_AddUser(string v1, string v2, int type, string context)
         {
             var result = "";

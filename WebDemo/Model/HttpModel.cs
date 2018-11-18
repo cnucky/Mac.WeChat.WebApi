@@ -124,4 +124,25 @@ namespace WebDemo.Model
         /// </summary>
         public string context { get; set; }
     }
+
+    public class FansGetNearModel : BaseModel {
+        public float lat { get; set; }
+        public float lng { get; set; }
+    }
+
+    public class FansSearchModel : BaseModel
+    {
+        public string search { get; set; }    
+    }
+
+    public class FansAddModel : BaseModel
+    {
+        public string v1 { get; set; }
+
+        public string v2 { get; set; }
+
+        public int type { get; set; }
+
+        public string hellotext { get; set; }
+    }
 }
