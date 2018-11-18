@@ -213,6 +213,42 @@ namespace WebDemo.Controllers
 
         }
 
+        /// <summary>
+        /// 群发消息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("msg/sendmass")]
+        public IHttpActionResult SendMass(SendMassModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_MassMessage(model.wxids, model.text);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
         #endregion 发送消息
 
         #region 群模块

@@ -611,6 +611,25 @@ namespace WebDemo.WeChat
             }
         }
 
+        /// <summary>
+        /// 群发消息
+        /// </summary>
+        /// <param name="wxid"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public unsafe string Wx_MassMessage(string wxid, string content)
+        {
+            content = content.Replace(" ", "\r\n");
+            fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
+            {
+                XzyWxApis.WXMassMessage(pointerWxUser, wxid, content, (int)msgptr1);
+                var datas = MarshalNativeToManaged((IntPtr)msgPtr);
+                var str = datas.ToString();
+                Wx_ReleaseEX(ref msgPtr);
+                return str;
+            }
+        }
+
         private int wx_imptr;
         /// <summary>
         /// 发消息 - 图片
