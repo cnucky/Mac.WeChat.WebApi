@@ -225,7 +225,7 @@ namespace WebDemo.Model
         /// <summary>
         /// 回复id
         /// </summary>
-        public string replyid { get; set; }
+        public int replyid { get; set; }
     }
 
     public class SnsUserModel : SnsModel
@@ -288,4 +288,92 @@ namespace WebDemo.Model
         public string name { get; set; }
     }
 
+    public class LabelModel: BaseModel
+    {
+        /// <summary>
+        /// 标签id
+        /// </summary>
+        public string labelid { get; set; }
+    }
+
+    public class LabelSetModel : LabelModel
+    {
+        /// <summary>
+        /// wxid
+        /// </summary>
+        public string wxid { get; set; }
+    }
+
+    public class LabelAddModel : BaseModel
+    {
+        /// <summary>
+        /// 标签名称
+        /// </summary>
+        public string name { get; set; }
+    }
+
+    public class FavModel : BaseModel
+    {
+        /// <summary>
+        /// 收藏key
+        /// </summary>
+        public string favkey { get; set; }
+    }
+
+    public class FavAddModel : BaseModel
+    {
+        /// <summary>
+        /// <favitem type="1"><desc>我这辈子最佩服的只有两个人一个是群主，还有一个，就是免死[抱拳][抱拳][抱拳]</desc><ctrlflag>127</ctrlflag><source sourcetype="1" sourceid="5247349643135372738"><fromusr>wxid_j7rwo75glpzw22</fromusr><tousr>7459655793@chatroom</tousr><createtime>1474781339</createtime><msgid>5247349643135372738</msgid></source></favitem>
+        /// </summary>
+        public string favObject { get; set; }
+    }
+
+    public class FavSelectModel : BaseModel
+    {
+        /// <summary>
+        /// 收藏id
+        /// </summary>
+        public string favid { get; set; }
+    }
+
+    public class UserSetWxidModel : BaseModel
+    {
+        /// <summary>
+        /// wxid
+        /// </summary>
+        public string wxid { get; set; }
+    }
+
+    public class UserSetUserInfoModel : BaseModel
+    {
+        /// <summary>
+        /// 昵称
+        /// </summary>
+        public string nickname { get; set; }
+
+        /// <summary>
+        /// 签名
+        /// </summary>
+        public string sign { get; set; }
+
+        /// <summary>
+        /// 性别 0/1
+        /// </summary>
+        public int sex { get; set; }
+
+        /// <summary>
+        /// 国籍 CN
+        /// </summary>
+        public string country { get; set; }
+
+        /// <summary>
+        /// 省份 guangdong
+        /// </summary>
+        public string provincia { get; set; }
+
+        /// <summary>
+        /// 市 guangzhou
+        /// </summary>
+        public string city { get; set; }
+    }
 }

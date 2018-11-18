@@ -133,6 +133,175 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:WebDemo.Controllers.WeChatController.ContactGet(WebDemo.Model.ContactModel)">
+            <summary>
+            获取好友详情
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.ContactSetRemark(WebDemo.Model.ContactRemarkModel)">
+            <summary>
+            设置好友备注
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.ContactDelete(WebDemo.Model.ContactModel)">
+            <summary>
+            删除好友
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsSendText(WebDemo.Model.SnsSendTextModel)">
+            <summary>
+            发送文字朋友圈
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsSendImageText(WebDemo.Model.SnsSendImageTextModel)">
+            <summary>
+            发送图文朋友圈
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsGetTimeLine(WebDemo.Model.SnsModel)">
+            <summary>
+            获取朋友圈，snsid第一次传空，后面传最后一条id进行翻页查看
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsGetUserPage(WebDemo.Model.SnsUserModel)">
+            <summary>
+            查看指定好友朋友圈,snsid 第一次传空，后面传最后一条id进行翻页查看
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsObjectDetail(WebDemo.Model.SnsModel)">
+            <summary>
+            获取朋友圈详情
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SnsComment(WebDemo.Model.SnsComment)">
+            <summary>
+            朋友圈评论
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GhFlower(WebDemo.Model.GhModel)">
+            <summary>
+            关注公众号
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GhSearch(WebDemo.Model.GhSearchModel)">
+            <summary>
+            搜索公众号
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SubscriptionCommand(WebDemo.Model.GhSubscriptionCommandModel)">
+            <summary>
+            执行公众号菜单
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.RequestUrl(WebDemo.Model.GhRequestUrl)">
+            <summary>
+            阅读链接
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.LabelGet(WebDemo.Model.BaseModel)">
+            <summary>
+            获取所有标签
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.LabelSet(WebDemo.Model.LabelSetModel)">
+            <summary>
+            设置标签
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.LabelAdd(WebDemo.Model.LabelAddModel)">
+            <summary>
+            创建标签
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.LabelDelete(WebDemo.Model.LabelModel)">
+            <summary>
+            删除标签
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FavSync(WebDemo.Model.FavModel)">
+            <summary>
+            同步收藏
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FavAdd(WebDemo.Model.FavAddModel)">
+            <summary>
+            添加收藏
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FavSelect(WebDemo.Model.FavSelectModel)">
+            <summary>
+            查看收藏
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.UserSetWxid(WebDemo.Model.UserSetWxidModel)">
+            <summary>
+            设置wxid
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.UserSetUserInfo(WebDemo.Model.UserSetUserInfoModel)">
+            <summary>
+            设置个人信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:WebDemo.Model.ApiServerMsg.Success">
+            <summary>
+            是否成功标记
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.ApiServerMsg.Context">
+            <summary>
+            成功返回内容
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.ApiServerMsg.ErrContext">
+            <summary>
+            失败返回内容
+            </summary>
+        </member>
         <member name="P:WebDemo.Model.BaseModel.uuid">
             <summary>
             创建websocket的uuid唯一标识
@@ -178,9 +347,29 @@
             微信ID
             </summary>
         </member>
+        <member name="P:WebDemo.Model.SendAppModel.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendAppModel.des">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendAppModel.url">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SendAppModel.thumburl">
+            <summary>
+            图片地址
+            </summary>
+        </member>
         <member name="P:WebDemo.Model.GroupCreatModel.users">
             <summary>
-            好友wxid ["wxid_aaa","wxid_bbb"]
+            好友wxid ["wxid_aaa","wxid_bbb"]，不小于3人且包含自己
             </summary>
         </member>
         <member name="T:WebDemo.Model.GroupModel">
@@ -215,7 +404,166 @@
         </member>
         <member name="P:WebDemo.Model.GroupAnnouncementModel.context">
             <summary>
-            群名称
+            群公告
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FansSearchModel.search">
+            <summary>
+            搜索条件  QQ号 手机号 微信号
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FansAddModel.type">
+            <summary>
+            1   -通过QQ好友添加--可以
+            2   -通过搜索邮箱--可加但无提示
+            3   -通过微信号搜索--可以
+            5   -通过朋友验证消息-可加但无提示
+            7   -通过朋友验证消息(可回复)-可加但无提示
+            12  -来自QQ好友--可以
+            13  -通过手机通讯录添加--可以
+            14  -通过群来源--no
+            15  -通过搜索手机号--可以
+            16  -通过朋友验证消息-可加但无提示
+            17  -通过名片分享--no
+            18  -通过附近的人--可以(貌似只需要v1就够了)
+            22  -通过摇一摇打招呼方式--可以
+            25  -通过漂流瓶---no
+            30  -通过二维码方式--可以
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FansAddModel.hellotext">
+            <summary>
+            打招呼语句
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.ContactModel.wxid">
+            <summary>
+            微信id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.ContactRemarkModel.remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsModel.snsid">
+            <summary>
+            朋友圈id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsComment.context">
+            <summary>
+            评论内容
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsComment.replyid">
+            <summary>
+            回复id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsUserModel.wxid">
+            <summary>
+            wxid
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsSendTextModel.text">
+            <summary>
+            朋友圈文字内容
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.SnsSendImageTextModel.base64list">
+            <summary>
+            朋友圈图片 base64 数组 不超过9张
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GhModel.ghid">
+            <summary>
+            公众号id  gh_xxxxxxx
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GhSubscriptionCommandModel.uin">
+            <summary>
+            公众号uin
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GhSubscriptionCommandModel.key">
+            <summary>
+            公众号key
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GhRequestUrl.url">
+            <summary>
+            阅读链接地址
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GhSearchModel.name">
+            <summary>
+            公众号名称
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.LabelModel.labelid">
+            <summary>
+            标签id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.LabelSetModel.wxid">
+            <summary>
+            wxid
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.LabelAddModel.name">
+            <summary>
+            标签名称
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FavModel.favkey">
+            <summary>
+            收藏key
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FavAddModel.favObject">
+            <summary>
+            <favitem type="1"><desc>我这辈子最佩服的只有两个人一个是群主，还有一个，就是免死[抱拳][抱拳][抱拳]</desc><ctrlflag>127</ctrlflag><source sourcetype="1" sourceid="5247349643135372738"><fromusr>wxid_j7rwo75glpzw22</fromusr><tousr>7459655793@chatroom</tousr><createtime>1474781339</createtime><msgid>5247349643135372738</msgid></source></favitem>
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.FavSelectModel.favid">
+            <summary>
+            收藏id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetWxidModel.wxid">
+            <summary>
+            wxid
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.sex">
+            <summary>
+            性别 0/1
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.country">
+            <summary>
+            国籍 CN
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.provincia">
+            <summary>
+            省份 guangdong
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.UserSetUserInfoModel.city">
+            <summary>
+            市 guangzhou
             </summary>
         </member>
         <member name="T:WebDemo.Model.BackWxMsg">
@@ -709,6 +1057,13 @@
             <param name="wxid"></param>
             <param name="content"></param>
         </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsTimeline(System.String)">
+            <summary>
+            查看朋友圈 ID第一次传空
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsUpload(System.String)">
             <summary>
             朋友圈图片上传
@@ -814,6 +1169,23 @@
             搜索用户信息
             </summary>
             <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_AddUser(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            添加好友
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="type"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_WebSearch(System.String)">
+            <summary>
+            公众号搜索
+            </summary>
+            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.GetSubscriptionInfo(System.String)">
