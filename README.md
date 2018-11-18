@@ -9,4 +9,4 @@
 查看使用方法查看 www/test.html 
 打开项目地址 http://localhost/swagger 即可查看webapi接口文档。
 
-测试地址：http://47.96.8.181/swagger/ui/index
+测试地址：http://macwechat.keduoduo.online/swagger/ui/index#/WeChat
