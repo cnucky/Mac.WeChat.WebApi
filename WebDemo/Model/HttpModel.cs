@@ -251,4 +251,41 @@ namespace WebDemo.Model
         /// </summary>
         public List<string> base64list { get; set; }
     }
+
+    public class GhModel : BaseModel
+    {
+        /// <summary>
+        /// 公众号id  gh_xxxxxxx
+        /// </summary>
+        public string ghid { get; set; }
+    }
+
+    public class GhSubscriptionCommandModel : GhModel
+    {
+        /// <summary>
+        /// 公众号uin
+        /// </summary>
+        public string uin { get; set; }
+
+        /// <summary>
+        /// 公众号key
+        /// </summary>
+        public string key { get; set; }
+    }
+
+    public class GhRequestUrl : GhSubscriptionCommandModel {
+        /// <summary>
+        /// 阅读链接地址
+        /// </summary>
+        public string url { get; set; }
+    }
+
+    public class GhSearchModel : BaseModel
+    {
+        /// <summary>
+        /// 公众号名称
+        /// </summary>
+        public string name { get; set; }
+    }
+
 }

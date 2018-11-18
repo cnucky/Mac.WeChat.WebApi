@@ -948,6 +948,155 @@ namespace WebDemo.Controllers
 
         }
 
-        #endregion
+        #endregion 朋友圈模块
+
+        #region  公众号
+
+        /// <summary>
+        /// 关注公众号
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("gh/follow")]
+        public IHttpActionResult GhFlower(GhModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_AddUser(model.ghid, "", 0, "");
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 搜索公众号
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("gh/search")]
+        public IHttpActionResult GhSearch(GhSearchModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_WebSearch(model.name);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 执行公众号菜单
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("gh/subscriptioncommand")]
+        public IHttpActionResult SubscriptionCommand(GhSubscriptionCommandModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SubscriptionCommand(model.ghid,uint.Parse(model.uin),model.key);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 阅读链接
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("gh/requesturl")]
+        public IHttpActionResult RequestUrl(GhRequestUrl model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_RequestUrl(model.url, model.uin, model.key);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+
+        #endregion 公众号
     }
 }

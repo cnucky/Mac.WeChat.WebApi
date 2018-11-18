@@ -1753,12 +1753,38 @@ namespace WebDemo.WeChat
             return result;
         }
 
+        /// <summary>
+        /// 添加好友
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="type"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public unsafe string Wx_AddUser(string v1, string v2, int type, string context)
         {
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
                 XzyWxApis.WXAddUser(pointerWxUser, v1, v2, type, context, (int)msgptr1);
+                var datas = MarshalNativeToManaged((IntPtr)msgPtr);
+                result = datas.ToString();
+                Wx_ReleaseEX(ref msgPtr);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 公众号搜索
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public unsafe string Wx_WebSearch(string search)
+        {
+            var result = "";
+            fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
+            {
+                XzyWxApis.WXWebSearch(pointerWxUser, search, (int)msgptr1);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
