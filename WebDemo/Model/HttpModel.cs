@@ -84,11 +84,44 @@ namespace WebDemo.Model
         public string users { get; set; }
     }
 
-    public class GroupQuickModel : BaseModel
+    /// <summary>
+    /// 群信息
+    /// </summary>
+    public class GroupModel : BaseModel
     {
         /// <summary>
         /// 群id
         /// </summary>
         public string chatroomid { get; set; }
+    }
+
+    public class GroupUserModel: GroupModel
+    {
+        /// <summary>
+        /// 用户微信id集合
+        /// </summary>
+        public string user { get; set; }
+    }
+
+    /// <summary>
+    /// 群信息
+    /// </summary>
+    public class GroupNameModel : GroupModel
+    {
+        /// <summary>
+        /// 群名称
+        /// </summary>
+        public string name { get; set; }
+    }
+
+    /// <summary>
+    /// 群信息
+    /// </summary>
+    public class GroupAnnouncementModel : GroupModel
+    {
+        /// <summary>
+        /// 群名称
+        /// </summary>
+        public string context { get; set; }
     }
 }

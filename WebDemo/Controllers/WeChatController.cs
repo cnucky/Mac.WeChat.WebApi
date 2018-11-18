@@ -260,7 +260,7 @@ namespace WebDemo.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("group/quick")]
-        public IHttpActionResult GroupQuick(GroupQuickModel model)
+        public IHttpActionResult GroupQuick(GroupModel model)
         {
             ApiServerMsg result = new ApiServerMsg();
             try
@@ -289,6 +289,221 @@ namespace WebDemo.Controllers
 
         }
 
+        /// <summary>
+        /// 获取群成员资料
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/getmember")]
+        public IHttpActionResult GroupGetMember(GroupModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_GetChatRoomMember(model.chatroomid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 添加群成员 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/addmember")]
+        public IHttpActionResult GroupAddMember(GroupUserModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_AddChatRoomMember(model.chatroomid,model.user);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 邀请群成员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/invitemember")]
+        public IHttpActionResult GroupInviteMember(GroupUserModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_InviteChatRoomMember(model.chatroomid, model.user);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 踢出群成员
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/delmember")]
+        public IHttpActionResult GroupDelMember(GroupUserModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_DeleteChatRoomMember(model.chatroomid, model.user);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 修改群名称
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/updatename")]
+        public IHttpActionResult GroupUpdateName(GroupNameModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SetChatroomName(model.chatroomid, model.name);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 修改群公告
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("group/updateannouncement")]
+        public IHttpActionResult GroupUpdateAnnouncement(GroupAnnouncementModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SetChatroomAnnouncement(model.chatroomid, model.context);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
 
         #endregion
     }
