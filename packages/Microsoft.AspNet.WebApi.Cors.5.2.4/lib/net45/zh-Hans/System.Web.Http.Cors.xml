@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.Http.Cors</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.Http.CorsHttpConfigurationExtensions">
+      <summary>
+        <see cref="T:System.Web.Http.HttpConfiguration" /> 的 CORS 相关扩展方法。</summary>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.EnableCors(System.Web.Http.HttpConfiguration)">
+      <summary>启用对 CORS 的支持。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.EnableCors(System.Web.Http.HttpConfiguration,System.Web.Http.Cors.ICorsPolicyProvider)">
+      <summary>启用对 CORS 的支持。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="defaultPolicyProvider">默认的 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.GetCorsEngine(System.Web.Http.HttpConfiguration)">
+      <summary>从 <see cref="T:System.Web.Http.HttpConfiguration" /> 中获取 <see cref="T:System.Web.Cors.ICorsEngine" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.ICorsEngine" />。</returns>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.GetCorsPolicyProviderFactory(System.Web.Http.HttpConfiguration)">
+      <summary>从 <see cref="T:System.Web.Http.HttpConfiguration" /> 中获取 <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</returns>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.SetCorsEngine(System.Web.Http.HttpConfiguration,System.Web.Cors.ICorsEngine)">
+      <summary>在 <see cref="T:System.Web.Http.HttpConfiguration" /> 上设置 <see cref="T:System.Web.Cors.ICorsEngine" />。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="corsEngine">
+        <see cref="T:System.Web.Cors.ICorsEngine" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration 或 corsEngine</exception>
+    </member>
+    <member name="M:System.Web.Http.CorsHttpConfigurationExtensions.SetCorsPolicyProviderFactory(System.Web.Http.HttpConfiguration,System.Web.Http.Cors.ICorsPolicyProviderFactory)">
+      <summary>在 <see cref="T:System.Web.Http.HttpConfiguration" /> 上设置 <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <param name="corsPolicyProviderFactory">
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration 或 corsPolicyProviderFactory</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory">
+      <summary>从控制器或操作特性返回 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> 的 <see cref="T:System.Web.Http.Cors.ICorsPolicyProviderFactory" /> 的实现。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.#ctor">
+      <summary>初始化 <see cref="T:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.DefaultPolicyProvider">
+      <summary>获取或设置默认 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</summary>
+      <returns>默认的 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+    </member>
+    <member name="M:System.Web.Http.Cors.AttributeBasedPolicyProviderFactory.GetCorsPolicyProvider(System.Net.Http.HttpRequestMessage)">
+      <summary>获取请求的 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+      <param name="request">请求。</param>
+      <exception cref="T:System.ArgumentNullException">request</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsHttpRequestMessageExtensions">
+      <summary>
+        <see cref="T:System.Net.Http.HttpRequestMessage" /> 的 CORS 相关扩展方法。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsHttpRequestMessageExtensions.GetCorsRequestContext(System.Net.Http.HttpRequestMessage)">
+      <summary>获取给定请求的 <see cref="T:System.Web.Cors.CorsRequestContext" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.CorsRequestContext" />。</returns>
+      <param name="request">
+        <see cref="T:System.Net.Http.HttpRequestMessage" />。</param>
+      <exception cref="T:System.ArgumentNullException">request</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsHttpResponseMessageExtensions">
+      <summary>
+        <see cref="T:System.Net.Http.HttpResponseMessage" /> 的 CORS 相关扩展方法。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsHttpResponseMessageExtensions.WriteCorsHeaders(System.Net.Http.HttpResponseMessage,System.Web.Cors.CorsResult)">
+      <summary>在响应中写入 CORS 标头。</summary>
+      <param name="response">
+        <see cref="T:System.Net.Http.HttpResponseMessage" />。</param>
+      <param name="corsResult">
+        <see cref="T:System.Web.Cors.CorsResult" />。</param>
+      <exception cref="T:System.ArgumentNullException">response 或 corsResult</exception>
+    </member>
+    <member name="T:System.Web.Http.Cors.CorsMessageHandler">
+      <summary>用于处理 CORS 请求的自定义 <see cref="T:System.Net.Http.DelegatingHandler" />。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.#ctor(System.Web.Http.HttpConfiguration)">
+      <summary>初始化 <see cref="T:System.Web.Http.Cors.CorsMessageHandler" /> 类的新实例。</summary>
+      <param name="httpConfiguration">
+        <see cref="T:System.Web.Http.HttpConfiguration" />。</param>
+      <exception cref="T:System.ArgumentNullException">httpConfiguration</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.HandleCorsPreflightRequestAsync(System.Net.Http.HttpRequestMessage,System.Web.Cors.CorsRequestContext,System.Threading.CancellationToken)">
+      <summary>处理 CORS 指定的预备请求。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task`1" />
+      </returns>
+      <param name="request">请求。</param>
+      <param name="corsRequestContext">CORS 请求上下文。</param>
+      <param name="cancellationToken">取消标记。</param>
+      <exception cref="T:System.ArgumentNullException">request 或 corsRequestContext</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.HandleCorsRequestAsync(System.Net.Http.HttpRequestMessage,System.Web.Cors.CorsRequestContext,System.Threading.CancellationToken)">
+      <summary>处理实际 CORS 请求。</summary>
+      <returns>
+        <see cref="T:System.Threading.Tasks.Task`1" />。</returns>
+      <param name="request">
+        <see cref="T:System.Net.Http.HttpRequestMessage" />。</param>
+      <param name="corsRequestContext">
+        <see cref="T:System.Web.Cors.CorsRequestContext" />。</param>
+      <param name="cancellationToken">
+        <see cref="T:System.Threading.CancellationToken" />。</param>
+      <exception cref="T:System.ArgumentNullException">request 或 corsRequestContext</exception>
+    </member>
+    <member name="M:System.Web.Http.Cors.CorsMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>以异步操作的形式将 HTTP 请求发送到内部处理程序，然后再发送到服务器。</summary>
+      <returns>返回 <see cref="T:System.Threading.Tasks.Task`1" />。表示异步操作的任务对象。</returns>
+      <param name="request">要发送到服务器的 HTTP 请求消息。</param>
+      <param name="cancellationToken">用于取消操作的取消标记。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.DisableCorsAttribute">
+      <summary>此类定义一个特性，可将该特性应用到某个操作或控制器以禁用 CORS。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.DisableCorsAttribute.#ctor">
+      <summary>初始化 <see cref="T:System.Web.Http.Cors.DisableCorsAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.DisableCorsAttribute.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>以异步方式获取 CORS 策略。</summary>
+      <returns>为此操作新建的任务。</returns>
+      <param name="request">请求。</param>
+      <param name="cancellationToken">为此任务分配的取消标记。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.EnableCorsAttribute">
+      <summary>此类定义一个特性，可将该特性应用到某个操作或控制器以启用 CORS。默认情况下，它允许所有源、方法和标头。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.#ctor(System.String,System.String,System.String)">
+      <summary>初始化 <see cref="T:System.Web.Http.Cors.EnableCorsAttribute" /> 类的新实例。</summary>
+      <param name="origins">允许访问资源的源的逗号分隔列表。使用“*”表示全部允许。</param>
+      <param name="headers">资源支持的标头的逗号分隔列表。使用“*”表示全部允许。使用 null 或空字符串表示都不允许。</param>
+      <param name="methods">资源支持的方法的逗号分隔列表。使用“*”表示全部允许。使用 null 或空字符串表示都不允许。注意：HTTP 谓词区分大小写，如果你不使用“*”，则在指定 GET、PUT、POST、DELETE 等谓词时应使用大写。例如：var cors = new EnableCorsAttribute("http://localhost:1234", "*", "GET,PUT,POST,DELETE");  </param>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.#ctor(System.String,System.String,System.String,System.String)">
+      <summary>初始化 <see cref="T:System.Web.Http.Cors.EnableCorsAttribute" /> 类的新实例。</summary>
+      <param name="origins">允许访问资源的源的逗号分隔列表。使用“*”表示全部允许。</param>
+      <param name="headers">资源支持的标头的逗号分隔列表。使用“*”表示全部允许。使用 null 或空字符串表示都不允许。</param>
+      <param name="methods">资源支持的方法的逗号分隔列表。使用“*”表示全部允许。使用 null 或空字符串表示都不允许。</param>
+      <param name="exposedHeaders">可由资源使用且可以公开的标头的逗号分隔列表。使用 null 或空字符串表示都不公开。</param>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.ExposedHeaders">
+      <summary>获取可由资源使用且可以公开的标头。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.EnableCorsAttribute.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)"></member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Headers">
+      <summary>获取资源支持的标头。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Methods">
+      <summary>获取资源支持的方法。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.Origins">
+      <summary>获取允许访问资源的源。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.PreflightMaxAge">
+      <summary>获取或设置预备请求结果可缓存的秒数。</summary>
+    </member>
+    <member name="P:System.Web.Http.Cors.EnableCorsAttribute.SupportsCredentials">
+      <summary>获取或设置一个值，用于指示资源是否支持请求中的用户凭据。</summary>
+    </member>
+    <member name="T:System.Web.Http.Cors.ICorsPolicyProvider">
+      <summary>提供用于获取 <see cref="T:System.Web.Cors.CorsPolicy" /> 的抽象。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.ICorsPolicyProvider.GetCorsPolicyAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>获取 <see cref="T:System.Web.Cors.CorsPolicy" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Cors.CorsPolicy" />。</returns>
+      <param name="request">请求。</param>
+      <param name="cancellationToken">取消标记。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.ICorsPolicyProviderFactory">
+      <summary>提供用于获取 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" /> 的抽象。</summary>
+    </member>
+    <member name="M:System.Web.Http.Cors.ICorsPolicyProviderFactory.GetCorsPolicyProvider(System.Net.Http.HttpRequestMessage)">
+      <summary>获取请求的 <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</summary>
+      <returns>
+        <see cref="T:System.Web.Http.Cors.ICorsPolicyProvider" />。</returns>
+      <param name="request">请求。</param>
+    </member>
+    <member name="T:System.Web.Http.Cors.Tracing.TraceCategories">
+      <summary>默认 CORS 跟踪实现所跟踪的类别名称。</summary>
+    </member>
+    <member name="F:System.Web.Http.Cors.Tracing.TraceCategories.CorsCategory">
+      <summary>CORS 相关事件的跟踪类别。</summary>
+    </member>
+  </members>
+</doc>

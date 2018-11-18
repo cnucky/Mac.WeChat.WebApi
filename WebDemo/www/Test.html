@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-2.2.4.min.js"></script>
+    <script>
+        var uuid = uuid();
+
+        if ("WebSocket" in window) {
+            // 打开一个 web socket
+            var ws = new WebSocket("ws://localhost:55355/api/wechat/socket/connect?uuid=" + uuid);
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                var model = { "action": "", "context": "" };
+                model.action = "start";
+                ws.send(JSON.stringify(model));
+            };
+            ws.onmessage = function (evt) {
+                var msg = JSON.parse( evt.data);
+                switch (msg.action) {
+                    case "log"://log信息
+                        console.log(msg.context);
+                        break;
+                    case "qrcode"://返回二维码数据
+                        $("#qrCode").attr("src", "data:image/jpeg;base64," + msg.context);
+                        break;
+                    case "getcontact"://获取联系人信息。会多次传输
+                        break;
+                    case "getgroup"://获取群组信息。会多次传输
+                        break;
+                    case "getgzh"://获取公众号信息。会多次传输
+                        break;
+                    case "msgcallback":
+                        break;
+                }
+            };
+            ws.onclose = function () {
+                // 关闭 websocket
+
+            };
+        }
+        else {
+            // 浏览器不支持 WebSocket
+        }
+
+        function uuid() {
+            var s = [];
+            var hexDigits = "0123456789abcdef";
+            for (var i = 0; i < 36; i++) {
+                s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+            }
+            s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+            s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+            s[8] = s[13] = s[18] = s[23] = "-";
+
+            var uuid = s.join("");
+            return uuid;
+        }
+    </script>
+</head>
+<body>
+    <div class="content-frame" >
+        <div>
+            <img id="qrCode" src="">
+        </div>
+    </div>
+</body>
+</html>

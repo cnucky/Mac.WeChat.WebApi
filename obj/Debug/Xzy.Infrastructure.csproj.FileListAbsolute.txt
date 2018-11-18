@@ -1,0 +1,2 @@
+C:\xm\ssrj\SS_Fission\SS_Fission\obj\Debug\Xzy.Infrastructure.csprojAssemblyReference.cache
+C:\xm\ssrj\SS_Fission\SS_Fission\obj\Debug\Xzy.Infrastructure.csproj.CoreCompileInputs.cache

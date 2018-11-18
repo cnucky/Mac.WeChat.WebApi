@@ -1,0 +1,725 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebDemo</name>
+    </assembly>
+    <members>
+        <member name="T:WebDemo.HttpHeaderFilter">
+            <summary>
+            swagger添加头文件过滤
+            </summary>
+        </member>
+        <member name="M:WebDemo.HttpHeaderFilter.Apply(Swagger.Net.Operation,Swagger.Net.SchemaRegistry,System.Web.Http.Description.ApiDescription)">
+            <summary>
+            应用
+            </summary>
+            <param name="operation"></param>
+            <param name="schemaRegistry"></param>
+            <param name="apiDescription"></param>
+        </member>
+        <member name="T:WebDemo.Controllers.WeChatController">
+            <summary>
+            微信扫码模块
+            </summary>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.Connect">
+            <summary>
+            创建websocket连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.ProcessRequest(System.Web.WebSockets.AspNetWebSocketContext)">
+            <summary>
+            websocket监听
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.SendText(WebDemo.Model.SendTextModel)">
+            <summary>
+            发送消息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebDemo.Model.BackWxMsg">
+            <summary>
+            微信消息
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.ChMsg">
+            <summary>
+            撤回消息
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.MsgContent">
+            <summary>
+            Tcp消息
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.PackMsg.key">
+            <summary>
+            红包key
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.PackMsg.msg">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.PackMsg.page">
+            <summary>
+            第几页
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.PackMsg.ok">
+            <summary>
+            是否读完
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.PackMsg.packitme">
+            <summary>
+            红包数据
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.OL">
+            <summary>
+            小号上线消息
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.Out">
+            <summary>
+            小号下线
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.Group">
+            <summary>
+            接收群组
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.GroupMember">
+            <summary>
+            接收群成员
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.content">
+            <summary>
+            接收微信消息
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.redpack">
+            <summary>
+            接收红包数据
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.img">
+            <summary>
+            接收图片消息
+            </summary>
+        </member>
+        <member name="F:WebDemo.Model.TcpMsg.chmsg">
+            <summary>
+            撤回消息
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxGroup.groupid">
+            <summary>
+            群id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxGroup.groupname">
+            <summary>
+            群名称
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxGroup.WxUser">
+            <summary>
+            微信ID
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxGroup.hander">
+            <summary>
+            归属句柄
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxUser.hander">
+            <summary>
+            句柄
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxUser.wxid">
+            <summary>
+            微信ID
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxUser.type">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxUser.code">
+            <summary>
+            功能
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.WxUser.name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.IsNull(System.Object)">
+            <summary>
+            判断是否为空，为空返回true
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.IsNull(System.String)">
+            <summary>
+            判断是否为空，为空返回true
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToString(System.Object)">
+            <summary>
+            将obj类型转换为string
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToInt32(System.String)">
+            <summary>
+            将字符串转int32
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToDouble(System.Object)">
+            <summary>
+            将字符串转double
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToDateTime(System.String)">
+            <summary>
+            转换为datetime类型
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToDateTime(System.String,System.String)">
+            <summary>
+            转换为datetime类型的格式字符串
+            </summary>
+            <param name="s">要转换的对象</param>
+            <param name="y">格式化字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.BaseClass.ConvertToDecimal(System.Object)">
+            <summary>
+            将字符串转换成decimal
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.Http_Helper.GetCookieInternal(System.String)">
+            <summary>
+            提取string Cookies
+            </summary>
+            <param name="pUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.Http_Helper.GetHttpHelperCookieString(System.Uri,System.Net.CookieCollection)">
+            <summary>
+            提取string Cookies
+            </summary>
+            <param name="pUrl"></param>
+            <param name="pCookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.Http_Helper.GetHttpHelperCookieString(System.String,System.Net.CookieCollection)">
+            <summary>
+            提取string Cookies
+            </summary>
+            <param name="pUrl"></param>
+            <param name="pCookie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.Http_Helper.PTRequest(System.Net.HttpWebRequest@)">
+            <summary>
+            删除Heard
+            </summary>
+            <param name="pRequest"></param>
+        </member>
+        <member name="T:WebDemo.Util.Http_Helper.InternetFlags">
+            <summary>
+            枚举类型
+            </summary>
+        </member>
+        <member name="M:WebDemo.Util.Http_Helper.Set_Cookies(System.String)">
+            <summary>
+            设置COOKIES
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:WebDemo.Util.Utilities.GB2Unicode(System.String)">
+            <summary>
+            单个汉字转换为%AB%CD格式,如"我=%CE%D2"
+            </summary>
+            <param name="Source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.Utilities.UTF8(System.String,System.Boolean)">
+            <summary>
+            编码部分默认转为大写字母,字符编码采用默认值
+            </summary>
+            <param name="Source">http://www.123.com</param>
+            <returns>http%3A%2F%2Fwww.123.com</returns>
+        </member>
+        <member name="M:WebDemo.Util.Utilities.ImageFromByte(System.Object)">
+            <summary>
+            输入byte[]数组或16进制文本文件的全路径文本名
+            </summary>
+            <param name="ByteOrPath">字节数组或全路径文件名</param>
+            <returns>Image图像</returns>
+        </member>
+        <member name="F:WebDemo.WeChat.XzyWeChatThread.tmrHeartBeat">
+            <summary>
+            心跳检查定时器
+            </summary>
+        </member>
+        <member name="F:WebDemo.WeChat.XzyWeChatThread.tmrReConnection">
+            <summary>
+            断线重连定时器
+            </summary>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.#ctor(System.Net.WebSockets.WebSocket)">
+            <summary>
+            初始化，并且使用二维码登录。并且初始化一些计时器，但实际上这些计时器没有什么用。这些计时器，应该是为了实现类似signalr的功能
+            </summary>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.SocketStart(System.Object)">
+            <summary>
+            socket启动
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.client_NewPackageReceived(System.Object,SuperSocket.ClientEngine.PackageEventArgs{SuperSocket.ProtoBase.StringPackageInfo})">
+            <summary>
+            接收消息
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.client_Error(System.Object,SuperSocket.ClientEngine.ErrorEventArgs)">
+            <summary>
+            socket 异常回调
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.client_Closed(System.Object,System.EventArgs)">
+            <summary>
+            socket断开回调
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.client_Connected(System.Object,System.EventArgs)">
+            <summary>
+            socket连接成功回调
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.TcpSendMsg(System.String,System.Object)">
+            <summary>
+            socket发送消息
+            </summary>
+            <param name="TcpMsg"></param>
+            <param name="content"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.HeartBeatCallBack(System.Object)">
+            <summary>
+            心跳包
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.ReConnectionCallBack(System.Object)">
+            <summary>
+            掉线重连
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Init">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.ImageToBytes(System.Drawing.Image)">
+            <summary>
+            图片转byte
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.ShowMessage(System.String)">
+            <summary>
+            打印消息
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendMsg(System.String,System.String)">
+            <summary>
+            发消息 -文字
+            </summary>
+            <param name="wxid"></param>
+            <param name="content"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendImg(System.String,System.String)">
+            <summary>
+            发消息 - 图片
+            </summary>
+            <param name="wxid"></param>
+            <param name="imgpath"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendVoice(System.String,System.String,System.Int32)">
+            <summary>
+            发语音 - silk
+            </summary>
+            <param name="wxid"></param>
+            <param name="imgpath"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_ShareCard(System.String,System.String,System.String)">
+            <summary>
+            分享名片
+            </summary>
+            <param name="user"></param>
+            <param name="wxid"></param>
+            <param name="title"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_MsgCallBack(System.Int32,System.Int32)">
+            <summary>
+            微信消息 - 回调
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetMsgKey(System.String)">
+            <summary>
+            设置消息。用于判断消息是否被处理过。若未处理过，则返回true，已经处理过的，返回false。
+            </summary>
+            <param name="msgid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetGroupMember(System.String)">
+            <summary>
+            取群成员
+            </summary>
+            <param name="groupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_IntoGroup(System.String)">
+            <summary>
+            进群
+            </summary>
+            <param name="url"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetGroup(System.String)">
+            <summary>
+            更新群成员
+            </summary>
+            <param name="groupId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_CreateChatRoom(System.String)">
+            <summary>
+            创建群
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_QuitChatRoom(System.String)">
+            <summary>
+            退群
+            </summary>
+            <param name="groupid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetChatroomName(System.String,System.String)">
+            <summary>
+            修改群名称
+            </summary>
+            <param name="groupid"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetChatroomAnnouncement(System.String,System.String)">
+            <summary>
+            修改群公告
+            </summary>
+            <param name="groupid"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetChatRoomMember(System.String)">
+            <summary>
+            获取群成员资料
+            </summary>
+            <param name="groupid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_AddChatRoomMember(System.String,System.String)">
+            <summary>
+            添加群成员
+            </summary>
+            <param name="groupid"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_DeleteChatRoomMember(System.String,System.String)">
+            <summary>
+            删除群成员
+            </summary>
+            <param name="groupid"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsComment(System.String,System.String,System.Int32)">
+            <summary>
+            朋友圈评论
+            </summary>
+            <param name="snsid"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsObjectOpDeleteComment(System.String,System.Int32)">
+            <summary>
+            删除评论、点赞
+            </summary>
+            <param name="snsid"></param>
+            <param name="cid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsObjectDetail(System.String)">
+            <summary>
+            获取朋友圈消息详情
+            </summary>
+            <param name="snsid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsUserPage(System.String,System.String)">
+            <summary>
+            查看指定用户朋友圈
+            </summary>
+            <param name="wxid"></param>
+            <param name="snsid">获取到的最后一次的id，第一次调用设置为空</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendMoment(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            发朋友圈
+            </summary>
+            <param name="wxid"></param>
+            <param name="content"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SnsUpload(System.String)">
+            <summary>
+            朋友圈图片上传
+            </summary>
+            <param name="base64"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetContacts">
+            <summary>
+            获取通讯录
+            </summary>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_AcceptUser(System.String,System.String)">
+            <summary>
+            接受好友请求
+            </summary>
+            <param name="stranger"></param>
+            <param name="ticket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetContact(System.String)">
+            <summary>
+            获取好友详情
+            </summary>
+            <param name="wxid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetUserRemark(System.String,System.String)">
+            <summary>
+            设置用户备注
+            </summary>
+            <param name="wxid"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_DeleteUser(System.String)">
+            <summary>
+            删除好友
+            </summary>
+            <param name="wxid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetLoginToken">
+            <summary>
+            获取登录token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetWeChatID(System.String)">
+            <summary>
+            设置微信id
+            </summary>
+            <param name="wxid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_QRCodeDecode(System.String)">
+            <summary>
+            获取本地二维码信息
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_ExtDeviceLoginGet(System.String)">
+            <summary>
+            获取其他设备登陆请求
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_ExtDeviceLoginOK(System.String)">
+            <summary>
+            确认其他设备登陆请求
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetUserInfo(System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            设置用户资料
+            </summary>
+            <param name="nick_name"></param>
+            <param name="unsigned"></param>
+            <param name="sex"></param>
+            <param name="country"></param>
+            <param name="provincia"></param>
+            <param name="city"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GenerateWxDat">
+            <summary>
+            获取62数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_AutoLogin(System.String)">
+            <summary>
+            断线重连
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.GetSubscriptionInfo(System.String)">
+            <summary>
+            获取公众号菜单
+            </summary>
+            <param name="gzhid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SubscriptionCommand(System.String,System.UInt32,System.String)">
+            <summary>
+            执行公众号菜单
+            </summary>
+            <param name="wxid">公众号用户名gh* 开头的</param>
+            <param name="uin">通过WXGetSubscriptionInfo获取</param>
+            <param name="key">通过WXGetSubscriptionInfo获取</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_RequestUrl(System.String,System.String,System.String)">
+            <summary>
+            阅读链接
+            </summary>
+            <param name="url"></param>
+            <param name="uin"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_GetContactLabelList">
+            <summary>
+            后期所有标签
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SetContactLabel(System.String,System.String)">
+            <summary>
+            设置用户标签
+            </summary>
+            <param name="wxid"></param>
+            <param name="labelid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_AddContactLabel(System.String)">
+            <summary>
+            创建标签
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_DeleteContactLabel(System.String)">
+            <summary>
+            创建标签
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_FavSync(System.String)">
+            <summary>
+            同步收藏
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_FavAddItem(System.String)">
+            <summary>
+            添加收藏
+            </summary>
+            <param name="fav_object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_FavGetItem(System.String)">
+            <summary>
+            查看收藏
+            </summary>
+            <param name="favid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SendAppMsg(System.String,System.String)">
+            <summary>
+            发送链接消息
+            </summary>
+            <param name="wxid"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_LoginRequest(System.String,System.String)">
+            <summary>
+            token登录
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_ReleaseEX(System.Int32@)">
+            <summary>
+            释放内存
+            </summary>
+            <param name="hande"></param>
+        </member>
+    </members>
+</doc>

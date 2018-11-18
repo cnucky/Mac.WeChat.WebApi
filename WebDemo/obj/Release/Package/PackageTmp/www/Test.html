@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="jquery-2.2.4.min.js"></script>
+    <script>
+        if ("WebSocket" in window) {
+            // 打开一个 web socket
+            var ws = new WebSocket("ws://localhost:55355/api/wechat/socket/connect");
+            ws.onopen = function () {
+                // Web Socket 已连接上，使用 send() 方法发送数据
+                ws.send("Start");
+            };
+            ws.onmessage = function (evt) {
+                var received_msg = evt.data;
+                var obj = received_msg.split("@xzy@");
+                switch (obj[0]) {
+                    case "qrcode":
+                        $("#qrCode").attr("src", "data:image/jpeg;base64," + obj[1]);
+                        break;
+                }
+            };
+            ws.onclose = function () {
+                // 关闭 websocket
+
+            };
+        }
+        else {
+            // 浏览器不支持 WebSocket
+        }
+    </script>
+</head>
+<body>
+    <div class="content-frame" >
+        <div>
+            <img id="qrCode" src="">
+        </div>
+    </div>
+</body>
+</html>
