@@ -56,6 +56,83 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupCreat(WebDemo.Model.GroupCreatModel)">
+            <summary>
+            创建群，好友微信id ["wxid_aaa","wxid_bbb"] 必须大于3人且包含自己
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupQuick(WebDemo.Model.GroupModel)">
+            <summary>
+            退出群
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupGetMember(WebDemo.Model.GroupModel)">
+            <summary>
+            获取群成员资料
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupAddMember(WebDemo.Model.GroupUserModel)">
+            <summary>
+            添加群成员 
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupInviteMember(WebDemo.Model.GroupUserModel)">
+            <summary>
+            邀请群成员
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupDelMember(WebDemo.Model.GroupUserModel)">
+            <summary>
+            踢出群成员
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupUpdateName(WebDemo.Model.GroupNameModel)">
+            <summary>
+            修改群名称
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.GroupUpdateAnnouncement(WebDemo.Model.GroupAnnouncementModel)">
+            <summary>
+            修改群公告
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FansGetNear(WebDemo.Model.FansGetNearModel)">
+            <summary>
+            查看附近的人
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FansSearch(WebDemo.Model.FansSearchModel)">
+            <summary>
+            搜索用户信息，支持手机号 微信号 qq号
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Controllers.WeChatController.FansAdd(WebDemo.Model.FansAddModel)">
+            <summary>
+            添加粉丝
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="P:WebDemo.Model.BaseModel.uuid">
             <summary>
             创建websocket的uuid唯一标识
@@ -99,6 +176,46 @@
         <member name="P:WebDemo.Model.SendAppModel.wxid">
             <summary>
             微信ID
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GroupCreatModel.users">
+            <summary>
+            好友wxid ["wxid_aaa","wxid_bbb"]
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.GroupModel">
+            <summary>
+            群信息
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GroupModel.chatroomid">
+            <summary>
+            群id
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GroupUserModel.user">
+            <summary>
+            用户微信id集合
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.GroupNameModel">
+            <summary>
+            群信息
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GroupNameModel.name">
+            <summary>
+            群名称
+            </summary>
+        </member>
+        <member name="T:WebDemo.Model.GroupAnnouncementModel">
+            <summary>
+            群信息
+            </summary>
+        </member>
+        <member name="P:WebDemo.Model.GroupAnnouncementModel.context">
+            <summary>
+            群名称
             </summary>
         </member>
         <member name="T:WebDemo.Model.BackWxMsg">
@@ -690,6 +807,13 @@
             <summary>
             断线重连
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Wx_SearchContact(System.String)">
+            <summary>
+            搜索用户信息
+            </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.GetSubscriptionInfo(System.String)">

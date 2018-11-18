@@ -505,7 +505,7 @@ namespace WebDemo.Controllers
 
         }
 
-        #endregion
+        #endregion 群模块
 
         #region 加粉引流
         /// <summary>
@@ -615,6 +615,339 @@ namespace WebDemo.Controllers
             }
 
         }
+        #endregion 加粉引流
+
+        #region 好友模块
+
+        /// <summary>
+        /// 获取好友详情
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("contact/get")]
+        public IHttpActionResult ContactGet(ContactModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_GetContact(model.wxid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 设置好友备注
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("contact/setremark")]
+        public IHttpActionResult ContactSetRemark(ContactRemarkModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SetUserRemark(model.wxid,model.remark);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+
+        /// <summary>
+        /// 删除好友
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("contact/delete")]
+        public IHttpActionResult ContactDelete(ContactModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_DeleteUser(model.wxid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        #endregion 好友模块
+
+        #region 朋友圈模块
+
+        /// <summary>
+        /// 发送文字朋友圈
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/sendtext")]
+        public IHttpActionResult SnsSendText(SnsSendTextModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SendMoment(model.text);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 发送图文朋友圈
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/sendimgtext")]
+        public IHttpActionResult SnsSendImageText(SnsSendImageTextModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SendMoment(model.text,model.base64list);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 获取朋友圈，snsid第一次传空，后面传最后一条id进行翻页查看
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/gettimeline")]
+        public IHttpActionResult SnsGetTimeLine(SnsModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SnsTimeline(model.snsid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 查看指定好友朋友圈,snsid 第一次传空，后面传最后一条id进行翻页查看
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/getuserpage")]
+        public IHttpActionResult SnsGetUserPage(SnsUserModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SnsUserPage(model.wxid,model.snsid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 获取朋友圈详情
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/objectdetail")]
+        public IHttpActionResult SnsObjectDetail(SnsModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SnsObjectDetail(model.snsid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
+        /// <summary>
+        /// 朋友圈评论
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("sns/comment")]
+        public IHttpActionResult SnsComment(SnsComment model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_SnsComment(model.snsid,model.context,model.replyid);
+                    result.Success = true;
+                    result.Context = res;
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+
+        }
+
         #endregion
     }
 }

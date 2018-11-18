@@ -1262,7 +1262,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                XzyWxApis.WXSnsComment(pointerWxUser, this.wxUser.wxid, snsid, content, replyid, (int)msgptr1);
+                msgPtr=ESnsComment(pointerWxUser, this.wxUser.wxid, snsid, content, replyid);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -1337,7 +1337,7 @@ namespace WebDemo.WeChat
         /// </summary>
         /// <param name="wxid"></param>
         /// <param name="content"></param>
-        public unsafe void Wx_SendMoment(string content, List<string> imagelist)
+        public unsafe string Wx_SendMoment(string content, List<string> imagelist)
         {
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
@@ -1359,11 +1359,15 @@ namespace WebDemo.WeChat
                     var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                     result = datas.ToString();
                     Wx_ReleaseEX(ref msgPtr);
+                    return result;
+                }
+                else {
+                    return "参数不正确";
                 }
             }
         }
 
-        public unsafe void Wx_SendMoment(string content)
+        public unsafe string Wx_SendMoment(string content)
         {
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
@@ -1372,7 +1376,26 @@ namespace WebDemo.WeChat
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
+                return result;
             }
+        }
+
+        /// <summary>
+        /// 查看朋友圈 ID第一次传空
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public unsafe string Wx_SnsTimeline(string id)
+        {
+            var result = "";
+            fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
+            {
+                XzyWxApis.WXSnsTimeline(pointerWxUser, id, (int)msgptr1);
+                var datas = MarshalNativeToManaged((IntPtr)msgPtr);
+                result = datas.ToString();
+                Wx_ReleaseEX(ref msgPtr);
+            }
+            return result;
         }
 
         /// <summary>
@@ -2002,7 +2025,7 @@ namespace WebDemo.WeChat
         public static extern int EShareCarde(int wxuser, string wxid, string fromwxid, string caption);
 
         [DllImport("EUtils.dll")]
-        public static extern int ESnsComment(int wxuser, string wxid, string snsid, string context);
+        public static extern int ESnsComment(int wxuser, string wxid, string snsid, string context, int replyid);
 
         [DllImport("EUtils.dll")]
         public static extern int EAddUser(int wxuser, string v1, string v2, int type, string context);
