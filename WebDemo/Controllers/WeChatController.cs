@@ -102,7 +102,7 @@ namespace WebDemo.Controllers
                                 xzy = new XzyWeChatThread(socket);
                             });
                             break;
-                        case "start62":
+                        case "start62"://通过账号密码+62数据登录
                             await Task.Factory.StartNew(() =>
                             {
                                 SocketStart62 socketStart62 = JsonConvert.DeserializeObject<SocketStart62>(model.context);
