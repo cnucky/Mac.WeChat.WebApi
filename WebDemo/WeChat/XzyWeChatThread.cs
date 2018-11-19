@@ -1670,6 +1670,23 @@ namespace WebDemo.WeChat
         }
 
         /// <summary>
+        /// 注销
+        /// </summary>
+        /// <returns></returns>
+        public unsafe string Wx_Logout()
+        {
+            var result = "";
+            fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
+            {
+                XzyWxApis.WXLogout(pointerWxUser,  (int)msgptr1);
+                var datas = MarshalNativeToManaged((IntPtr)msgPtr);
+                result = datas.ToString();
+                Wx_ReleaseEX(ref msgPtr);
+            }
+            return result;
+        }
+
+        /// <summary>
         /// 获取好友详情
         /// </summary>
         /// <param name="wxid"></param>

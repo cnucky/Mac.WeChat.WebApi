@@ -74,6 +74,14 @@ namespace WebDemo.Controllers
                 {
                     try
                     {
+                        //从连接池移除对象，如果想保持websocket断线后 微信继续执行可以不做此操作
+                        #region 微信注销线程释放
+                        //string myuuid = _dicSockets.Where(p => p.Value.socket.Equals(socket)).FirstOrDefault().Key;
+                        //_dicSockets[myuuid].weChatThread.Wx_Logout();
+                        //_dicSockets[myuuid].weChatThread = null;
+                        //_dicSockets.Remove(myuuid);
+                        #endregion 微信注销线程释放
+
                         await socket.CloseAsync(WebSocketCloseStatus.Empty, string.Empty, CancellationToken.None);//如果client发起close请求，对client进行ack
                     }
                     catch (Exception ex)
