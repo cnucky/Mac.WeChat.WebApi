@@ -94,6 +94,13 @@ namespace WebDemo.Controllers
                                 xzy = new XzyWeChatThread(socket);
                             });
                             break;
+                        case "start62":
+                            await Task.Factory.StartNew(() =>
+                            {
+                                SocketStart62 socketStart62 = JsonConvert.DeserializeObject<SocketStart62>(model.context);
+                                xzy = new XzyWeChatThread(socket, socketStart62.username, socketStart62.password, socketStart62.str62);
+                            });
+                            break;
                     }
                 }
             }
@@ -1461,5 +1468,46 @@ namespace WebDemo.Controllers
         }
 
         #endregion 个人信息
+
+        #region 二次登陆
+
+        /// <summary>
+        /// 获取62 数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("autologin/get62")]
+        public IHttpActionResult Get62(BaseModel model)
+        {
+            ApiServerMsg result = new ApiServerMsg();
+            try
+            {
+                if (_dicSockets.ContainsKey(model.uuid))
+                {
+                    var res = _dicSockets[model.uuid].weChatThread.Wx_GenerateWxDat();
+                    WxDat wxDat = JsonConvert.DeserializeObject<WxDat>(res);
+                    result.Success = true;
+                    result.Context = EUtils.EStrToHex(wxDat.data);
+                    return Ok(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Context = "不存在该websocket连接";
+                    return Ok(result);
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Success = false;
+                result.ErrContext = e.Message;
+                return Ok(result);
+            }
+        }
+
+
+        #endregion 二次登陆
     }
 }

@@ -19,6 +19,7 @@ using System.Net.WebSockets;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Xzy.IPAD.Core;
+using System.Configuration;
 
 namespace WebDemo.WeChat
 {
@@ -141,6 +142,26 @@ namespace WebDemo.WeChat
             });
 
         
+            msgCallBack += new XzyWxApis.DllcallBack(Wx_MsgCallBack);
+
+            tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
+
+            tmrReConnection = new System.Threading.Timer(ReConnectionCallBack, null, mReConnectionInterval, mReConnectionInterval);
+
+            SocketStart(null);
+
+        }
+
+        public XzyWeChatThread(WebSocket socket,string username,string password,string str62)
+        {
+            _socket = socket;
+            dicRedPack = new Dictionary<string, string>();
+            dicReadContent = new Dictionary<string, string>();
+            Task.Factory.StartNew(() => {
+                this.Init62(str62,username,password);
+            });
+
+
             msgCallBack += new XzyWxApis.DllcallBack(Wx_MsgCallBack);
 
             tmrHeartBeat = new System.Threading.Timer(HeartBeatCallBack, null, mHeartBeatInterval, mHeartBeatInterval);
@@ -399,7 +420,7 @@ namespace WebDemo.WeChat
             {
                 string uid = UUID;
                 var mac = Mac;
-                var ret = XzyAuth.Init(System.Configuration.ConfigurationManager.AppSettings["AuthKey"]);
+                var ret = XzyAuth.Init(ConfigurationManager.AppSettings["AuthKey"]);
                 var key = string.Format(@"<softtype><k3>11.0.1</k3><k9>iPad</k9><k10>2</k10><k19>58BF17B5-2D8E-4BFB-A97E-38F1226F13F8</k19><k20>{0}</k20><k21>neihe_5GHz</k21><k22>(null)</k22><k24>{1}</k24><k33>\345\276\256\344\277\241</k33><k47>1</k47><k50>1</k50><k51>com.tencent.xin</k51><k54>iPad4,4</k54></softtype>", UUID, Mac);
                 XzyWxApis.WXInitialize((int)WxUser1, "Test-IPAD", key, UUID);
                 XzyWxApis.WXSetRecvMsgCallBack(pointerWxUser, msgCallBack);
@@ -504,6 +525,115 @@ namespace WebDemo.WeChat
                 }
             }
         }
+
+        /// <summary>
+        /// 初始化62数据
+        /// </summary>
+        /// <param name="str16"></param>
+        /// <param name="WxUsername"></param>
+        /// <param name="wxpassword"></param>
+        public unsafe void Init62(string str16, string WxUsername, string wxpassword)
+        {
+            fixed (int* WxUser1 = &pointerWxUser, pushStr1 = &pushStr)
+            {
+                var ret = XzyAuth.Init(ConfigurationSettings.AppSettings["AuthKey"].ToString());
+                string uid = UUID;
+                var mac = Mac;
+
+                var key = string.Format(@"<softtype><k3>11.0.1</k3><k9>iPad</k9><k10>2</k10><k19>58BF17B5-2D8E-4BFB-A97E-38F1226F13F8</k19><k20>{0}</k20><k21>neihe_5GHz</k21><k22>(null)</k22><k24>{1}</k24><k33>\345\276\256\344\277\241</k33><k47>1</k47><k50>1</k50><k51>com.tencent.xin</k51><k54>iPad4,4</k54></softtype>", UUID, Mac);
+
+                XzyWxApis.WXInitialize((int)WxUser1, "Test-IPAD", key, UUID);
+
+                XzyWxApis.WXSetRecvMsgCallBack(pointerWxUser, msgCallBack);
+
+                //62数据是扫码登录成功后，再获取，并保存下来，而不是其它方式登录后再保存。并且还要使用方法WXGetLoginToken保存下token
+                #region 使用62数据自动登录，在扫码登录后，会得到62数据及token，传入到这里即可实现自动登录
+                //加载62数据
+                byte[] data62Bytes = Convert.FromBase64String(str16);
+                XzyWxApis.WXLoadWxDat(pointerWxUser, data62Bytes, data62Bytes.Length, (int)pushStr1);
+                var datas1 = MarshalNativeToManaged((IntPtr)pushStr);
+                var sstr1 = datas1.ToString();
+                if (string.IsNullOrEmpty(sstr1))
+                {
+                    WebSocketSendLog("登陆失败，重新登录");
+                }
+                Wx_ReleaseEX(ref pushStr);
+                #endregion
+
+                //以下是使用账号密码登录，已经测试成功。账号：13127873237，密码：Taobao123
+                XzyWxApis.WXUserLogin(pointerWxUser, WxUsername, wxpassword, (int)pushStr1);
+                var datas = MarshalNativeToManaged((IntPtr)pushStr);
+                var sstr = datas.ToString();
+                Wx_ReleaseEX(ref pushStr);
+
+                UserData userdata = Newtonsoft.Json.JsonConvert.DeserializeObject<UserData>(sstr);//反序列化
+
+                if (userdata.Status == -301)
+                {
+                    XzyWxApis.WXUserLogin(pointerWxUser, WxUsername, wxpassword, (int)pushStr1);
+                    datas = MarshalNativeToManaged((IntPtr)pushStr);
+                    sstr = datas.ToString();
+                    Wx_ReleaseEX(ref pushStr);
+                    WebSocketSendLog("微信重定向");
+                    userdata = Newtonsoft.Json.JsonConvert.DeserializeObject<UserData>(sstr);//反序列化
+                    this.wxUser.wxid = userdata.UserName;
+                    this.wxUser.name = userdata.NickName;
+                    if (userdata.Status == 0)
+                    {
+                        WebSocketSendLog("登录成功");
+                        XzyWxApis.WXHeartBeat(pointerWxUser, (int)pushStr1);
+                        datas = MarshalNativeToManaged((IntPtr)pushStr);
+                        sstr = datas.ToString();
+                        Wx_ReleaseEX(ref pushStr);
+                        this.TcpSendMsg(TcpMsg.OL, this.wxUser);
+                        Task.Factory.StartNew(delegate { this.Wx_GetContacts(); });
+
+                        //：登录成功后，取出token备用
+                        //XzyWxApis.WXGetLoginToken(pointerWxUser, (int)pushStr1);
+                        //var datas3 = MarshalNativeToManaged((IntPtr)pushStr);
+                        //var sstr3 = datas3.ToString();
+                        //var tokenData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(sstr3, new { Token = "" });
+                        Wx_ReleaseEX(ref pushStr);
+                        return;
+                    }
+                    else
+                    {
+                        WebSocketSendLog("登录失败");
+                    }
+                }
+                if (userdata.Status == 0)
+                {
+                    WebSocketSendLog("登录成功");
+                    XzyWxApis.WXHeartBeat(pointerWxUser, (int)pushStr1);
+                    datas = MarshalNativeToManaged((IntPtr)pushStr);
+                    sstr = datas.ToString();
+                    Wx_ReleaseEX(ref pushStr);
+                    this.wxUser.wxid = userdata.UserName;
+                    this.wxUser.name = userdata.NickName;
+                    this.TcpSendMsg(TcpMsg.OL, this.wxUser);
+                    Task.Factory.StartNew(delegate { this.Wx_GetContacts(); });
+
+                    //：登录成功后，取出token备用
+                    //XzyWxApis.WXGetLoginToken(pointerWxUser, (int)pushStr1);
+                    //var datas3 = MarshalNativeToManaged((IntPtr)pushStr);
+                    //var sstr3 = datas3.ToString();
+                    //var tokenData = Newtonsoft.Json.JsonConvert.DeserializeAnonymousType(sstr3, new { Token = "" });
+                    Wx_ReleaseEX(ref pushStr);
+                    return;
+                }
+                else
+                {
+                    WebSocketSendLog("登录失败");
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 微信返回消息解码
+        /// </summary>
+        /// <param name="pNativeData"></param>
+        /// <returns></returns>
         public object MarshalNativeToManaged(IntPtr pNativeData)
         {
             try

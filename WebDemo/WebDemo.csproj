@@ -179,6 +179,7 @@
     <Compile Include="WxModel\SnsUpload.cs" />
     <Compile Include="WxModel\TcpMsg.cs" />
     <Compile Include="WxModel\UserData.cs" />
+    <Compile Include="WxModel\WxDat.cs" />
     <Compile Include="WxModel\WxGroup.cs" />
     <Compile Include="WxModel\WxMember.cs" />
     <Compile Include="WxModel\WxQrCode.cs" />

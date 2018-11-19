@@ -294,6 +294,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:WebDemo.Controllers.WeChatController.Get62(WebDemo.Model.BaseModel)">
+            <summary>
+            获取62 数据
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
         <member name="P:WebDemo.Model.ApiServerMsg.Success">
             <summary>
             是否成功标记
@@ -1010,6 +1017,21 @@
             <summary>
             登录
             </summary>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.Init62(System.String,System.String,System.String)">
+            <summary>
+            初始化62数据
+            </summary>
+            <param name="str16"></param>
+            <param name="WxUsername"></param>
+            <param name="wxpassword"></param>
+        </member>
+        <member name="M:WebDemo.WeChat.XzyWeChatThread.MarshalNativeToManaged(System.IntPtr)">
+            <summary>
+            微信返回消息解码
+            </summary>
+            <param name="pNativeData"></param>
+            <returns></returns>
         </member>
         <member name="M:WebDemo.WeChat.XzyWeChatThread.ImageToBytes(System.Drawing.Image)">
             <summary>

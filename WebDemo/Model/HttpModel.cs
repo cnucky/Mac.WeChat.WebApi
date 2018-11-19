@@ -5,6 +5,12 @@ using System.Web;
 
 namespace WebDemo.Model
 {
+    public class SocketStart62 {
+        public string username { get; set; }
+        public string password { get; set; }
+        public string str62 { get; set; }
+    }
+
     public class ApiServerMsg
     {
        /// <summary>

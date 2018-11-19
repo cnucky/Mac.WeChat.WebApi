@@ -12,9 +12,17 @@
             var ws = new WebSocket("ws://localhost:55355/api/wechat/socket/connect?uuid=" + uuid);
             ws.onopen = function () {
                 // Web Socket 已连接上，使用 send() 方法发送数据
+                //扫码登录
                 var model = { "action": "", "context": "" };
                 model.action = "start";
                 ws.send(JSON.stringify(model));
+
+                //62数据登录
+                //var model = { "action": "", "context": "" };
+                //model.action = "start62";
+                //model.context = JSON.stringify({ "username": "111", "password": "222", "str62": "333" });
+                //ws.send(JSON.stringify(model));
+
             };
             ws.onmessage = function (evt) {
                 var msg = JSON.parse( evt.data);
