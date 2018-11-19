@@ -713,6 +713,113 @@
             名称
             </summary>
         </member>
+        <member name="M:WebDemo.Util.EUtils.ESendSNS(System.Int32,System.String)">
+            <summary>
+            发送文字朋友圈
+            </summary>
+            <param name="wxuser"></param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESendSNSImage(System.Int32,System.String,System.String)">
+            <summary>
+            发送朋友圈图片
+            </summary>
+            <param name="wxuser"></param>
+            <param name="xml"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESetChatroomAnnouncement(System.Int32,System.String,System.String)">
+            <summary>
+            设置群公告
+            </summary>
+            <param name="wxuser"></param>
+            <param name="wxid"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESetChatroomName(System.Int32,System.String,System.String)">
+            <summary>
+            设置群名称
+            </summary>
+            <param name="wxuser"></param>
+            <param name="wxid"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.EShareCarde(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            发送名片
+            </summary>
+            <param name="wxuser"></param>
+            <param name="wxid"></param>
+            <param name="fromwxid"></param>
+            <param name="caption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESnsComment(System.Int32,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            朋友圈评论
+            </summary>
+            <param name="wxuser"></param>
+            <param name="wxid"></param>
+            <param name="snsid"></param>
+            <param name="context"></param>
+            <param name="replyid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.EAddUser(System.Int32,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="wxuser"></param>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="type"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESetUserRemark(System.Int32,System.String,System.String)">
+            <summary>
+            设置备注
+            </summary>
+            <param name="wxuser"></param>
+            <param name="wxid"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.ESayHello(System.Int32,System.String,System.String)">
+            <summary>
+            打招呼
+            </summary>
+            <param name="wxuser"></param>
+            <param name="v1"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.EAddContactLabel(System.Int32,System.String)">
+            <summary>
+            添加标签
+            </summary>
+            <param name="wxuser"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.EStrToHex(System.String)">
+            <summary>
+            16进制转字符串
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebDemo.Util.EUtils.EHexToStr(System.String)">
+            <summary>
+            字符串转16进制
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="M:WebDemo.Util.BaseClass.IsNull(System.Object)">
             <summary>
             判断是否为空，为空返回true

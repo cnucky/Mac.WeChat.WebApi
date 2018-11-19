@@ -723,7 +723,7 @@ namespace WebDemo.WeChat
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
 
-                msgPtr = EShareCarde(pointerWxUser, user, wxid, title);
+                msgPtr = EUtils.EShareCarde(pointerWxUser, user, wxid, title);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref wx_imptr);
@@ -1153,7 +1153,7 @@ namespace WebDemo.WeChat
             {
                 try
                 {
-                    msgPtr = ESetChatroomName(pointerWxUser, groupid, content);
+                    msgPtr = EUtils.ESetChatroomName(pointerWxUser, groupid, content);
                     var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                     result = datas.ToString();
                     Wx_ReleaseEX(ref msgPtr);
@@ -1186,7 +1186,7 @@ namespace WebDemo.WeChat
                     //Wx_ReleaseEX(ref msgPtr);
 
                     //方案二
-                    msgPtr = ESetChatroomAnnouncement(pointerWxUser, groupid, content);
+                    msgPtr = EUtils.ESetChatroomAnnouncement(pointerWxUser, groupid, content);
                     var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                     result = datas.ToString();
                     Wx_ReleaseEX(ref msgPtr);
@@ -1281,7 +1281,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                msgPtr=ESnsComment(pointerWxUser, this.wxUser.wxid, snsid, content, replyid);
+                msgPtr= EUtils.ESnsComment(pointerWxUser, this.wxUser.wxid, snsid, content, replyid);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -1374,7 +1374,7 @@ namespace WebDemo.WeChat
                         imagestr += String.Format(App.PYQContentImage, upload.big_url, upload.small_url, upload.size, 100, 100);
                     }
                     var result = String.Format(App.PYQContent, wxUser.wxid, imagestr);
-                    msgPtr = ESendSNSImage(pointerWxUser, result, content);
+                    msgPtr = EUtils.ESendSNSImage(pointerWxUser, result, content);
                     var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                     result = datas.ToString();
                     Wx_ReleaseEX(ref msgPtr);
@@ -1391,7 +1391,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                msgPtr = ESendSNS(pointerWxUser, content);
+                msgPtr = EUtils.ESendSNS(pointerWxUser, content);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -1568,7 +1568,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                msgPtr = ESetUserRemark(pointerWxUser, wxid, context);
+                msgPtr = EUtils.ESetUserRemark(pointerWxUser, wxid, context);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -1586,7 +1586,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                msgPtr = EDeleteUser(pointerWxUser, wxid);
+                XzyWxApis.WXDeleteUser(pointerWxUser, wxid,(int)msgptr1);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -1915,7 +1915,7 @@ namespace WebDemo.WeChat
             var result = "";
             fixed (int* WxUser1 = &pointerWxUser, msgptr1 = &msgPtr)
             {
-                msgPtr = EAddContactLabel(pointerWxUser, context);
+                msgPtr =EUtils.EAddContactLabel(pointerWxUser, context);
                 var datas = MarshalNativeToManaged((IntPtr)msgPtr);
                 result = datas.ToString();
                 Wx_ReleaseEX(ref msgPtr);
@@ -2050,42 +2050,6 @@ namespace WebDemo.WeChat
             XzyWxApis.WXRelease(hande);
             hande = 0;
         }
-
-        #endregion
-
-        #region 易语言 Utils 处理中文乱码
-        [DllImport("EUtils.dll")]
-        public static extern int ESendSNS(int wxuser, string str);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESendSNSImage(int wxuser, string xml, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESetChatroomAnnouncement(int wxuser, string wxid, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESetChatroomName(int wxuser, string wxid, string name);
-
-        [DllImport("EUtils.dll")]
-        public static extern int EShareCarde(int wxuser, string wxid, string fromwxid, string caption);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESnsComment(int wxuser, string wxid, string snsid, string context, int replyid);
-
-        [DllImport("EUtils.dll")]
-        public static extern int EAddUser(int wxuser, string v1, string v2, int type, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESetUserRemark(int wxuser, string wxid, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int ESayHello(int wxuser, string v1, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int EAddContactLabel(int wxuser, string context);
-
-        [DllImport("EUtils.dll")]
-        public static extern int EDeleteUser(int wxuser, string wxid);
 
         #endregion
     }

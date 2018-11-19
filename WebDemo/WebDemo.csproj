@@ -156,6 +156,7 @@
     <Compile Include="Model\HttpModel.cs" />
     <Compile Include="Model\SocketModel.cs" />
     <Compile Include="Util\ConvertUtils.cs" />
+    <Compile Include="Util\EUtils.cs" />
     <Compile Include="WxModel\AgreeDuty.cs" />
     <Compile Include="WxModel\ApiServerMsg.cs" />
     <Compile Include="WxModel\AtomicFunc.cs" />
